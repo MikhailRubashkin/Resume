@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class ResumeRepo implements Serializable {
+public class Resume implements Serializable {
 
     private Integer id;
     private String name2;
     private String surname;
-    private  String patronymic;
+    private String patronymic;
     private String sex;
     private Date date_of_birth;
     private String github_contacts;
@@ -26,9 +26,9 @@ public class ResumeRepo implements Serializable {
     private String rest;
     private String spring;
 
-    public ResumeRepo(){}
+    public Resume(){}
 
-    public ResumeRepo(String name2, String surname, String patronymic, String sex, Date date_of_birth, String github_contacts, String email, String telephone, String skype, String linkedin, String ginhub_technology, String spring_boot, String html, String java_ee, String java_core, String maven, String rest, String spring) {
+    public Resume(String name2, String surname, String patronymic, String sex, Date date_of_birth, String github_contacts, String email, String telephone, String skype, String linkedin, String ginhub_technology, String spring_boot, String html, String java_ee, String java_core, String maven, String rest, String spring) {
         this.name2 = name2;
         this.surname = surname;
         this.patronymic = patronymic;
@@ -205,7 +205,7 @@ public class ResumeRepo implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ResumeRepo that = (ResumeRepo) o;
+        Resume that = (Resume) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(name2, that.name2) &&
                 Objects.equals(surname, that.surname) &&
@@ -234,7 +234,7 @@ public class ResumeRepo implements Serializable {
 
     @Override
     public String toString() {
-        return "ResumeRepo{" +
+        return "Resume{" +
                 "id=" + id +
                 ", name2='" + name2 + '\'' +
                 ", surname='" + surname + '\'' +
