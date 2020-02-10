@@ -25,7 +25,8 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="187f96d3-4610-4dd5-8a6b-d3c0fc940033">
-        <schema name="public" object-types="table, view" />
+        <schema name="pg_catalog" object-types="function" />
+        <schema name="public" object-types="function, dataset trigger, constraint, table, sequence, index, view, column" />
       </connection>
     </loaded-nodes>
   </component>
@@ -43,6 +44,11 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="187f96d3-4610-4dd5-8a6b-d3c0fc940033" dataset="public.person" active-filter-id="">
       <filter id="9fa9f81b-3340-4552-8071-d8f998cc9ecd" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="187f96d3-4610-4dd5-8a6b-d3c0fc940033" dataset="public.person2" active-filter-id="b41710a3-527e-4605-95bc-b1ec24642d7c">
+      <filter id="b41710a3-527e-4605-95bc-b1ec24642d7c" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>

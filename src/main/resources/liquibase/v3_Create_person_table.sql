@@ -1,4 +1,4 @@
-CREATE TABLE person2
+CREATE TABLE Resume
   (
       ID int,
       NAME2 varchar(100) NOT NULL,

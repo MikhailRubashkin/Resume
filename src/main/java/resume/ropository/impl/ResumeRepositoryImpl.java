@@ -14,12 +14,12 @@ import java.util.List;
 public class ResumeRepositoryImpl implements ResumeRepository {
 
 
-    private static final String SAVE_QUERY = "";
+    private static final String SAVE_QUERY = "INSERT INTO Resume (id, name2, ) VALUES (?, ?, ?)";
     private static final String UPDATE_QUERY = "";
     private static final String GET_QUERY = "SELECT * FROM Resume WHERE id=?";
     private static final String GET_ALL_QUERY = "SELECT * FROM Resume";
     private static final String REMOVE_QUERY = "DELETE FROM Resume WHERE id=?";
-
+    private static final String GET_RESUMES_BY_NAME = "SELECT * FROM Resume WHERE NAME2 = ?";
 
     private Connection connection;
     private static volatile ResumeRepositoryImpl INSTANCE = null;
@@ -45,8 +45,24 @@ public class ResumeRepositoryImpl implements ResumeRepository {
 
 
     @Override
-    public List<Resume> getByName2(String name2) throws SQLException {
-        return null;
+    public List<Resume> getByName(String name2) throws SQLException {
+        final PreparedStatement statement = getConnection().prepareStatement(GET_RESUMES_BY_NAME);
+        statement.setString(2, name2);
+        statement.execute();
+        List<Resume> list = new ArrayList<>();
+        ResultSet rs = statement.getResultSet();
+        while (rs.next()) {
+            list.add(populateEntity(rs));
+        }
+        rs.close();
+        return list;
+    }
+
+    private Resume populateEntity(ResultSet rs) throws SQLException{
+        Resume entity = new Resume();
+        entity.setId(rs.getInt(1));
+        entity.setName2(rs.getString(2));
+        return entity;
     }
 
     @Override
@@ -79,7 +95,9 @@ public class ResumeRepositoryImpl implements ResumeRepository {
 
     @Override
     public int remove(int id) throws SQLException {
-        return 0;
+        final PreparedStatement statement = getConnection().prepareStatement(REMOVE_QUERY);
+        statement.setLong(1, id);
+        return statement.executeUpdate();
     }
     private Resume formResume (ResultSet resultSet) throws SQLException{
         Resume resume = new Resume();
