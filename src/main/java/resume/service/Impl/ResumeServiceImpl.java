@@ -44,4 +44,24 @@ public class ResumeServiceImpl implements ResumeService {
         }
         return Collections.emptyList();
     }
+
+    @Override
+    public void deleteResume(int id) {
+        try {
+            resumeRepository.remove(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public Resume addResume(Resume resume) {
+        try {
+            return resumeRepository.save(resume);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

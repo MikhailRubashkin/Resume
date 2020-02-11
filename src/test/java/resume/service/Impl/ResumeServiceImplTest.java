@@ -31,5 +31,15 @@ public class ResumeServiceImplTest {
     @org.junit.Test
     public void getResumes() {
         Resume resume = new Resume();
+        resume.setId(4);
+        resume.setName2("Петров");
+        resume.setSurname("Петр");
+        resume.setPatronymic("Петрович");
+        resume.setSex("Мужчина");
+        final Resume newResume = resumeService.addResume(resume);
+        Assert.assertNotNull(newResume);
+        final List<Resume> resumes = resumeService.getResume();
+        Assert.assertTrue(resumes.size() > 0);
+        resumeService.deleteResume(newResume.getId());
     }
 }

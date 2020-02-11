@@ -10,7 +10,5 @@ public interface EntytiRepository<T> {
 
     T save(T t) throws SQLException;
 
-    void update(T t) throws SQLException;
-
     int remove(int id) throws SQLException;
 }

@@ -1,11 +1,11 @@
-CREATE TABLE person2
+CREATE TABLE Resume
   (
       ID int,
       NAME2 varchar(100) NOT NULL,
       SURNAME varchar(100) NOT NULL,
       PATRONYMIC varchar(100) NOT NULL,
       SEX varchar(50) NOT NULL,
-      Date_of_Birth date NOT NULL,
+      Date_of_Birth date,
       GITHUB_CONTACTS varchar(100),
       EMAIL varchar(100),
       TELEPHONE varchar(100),

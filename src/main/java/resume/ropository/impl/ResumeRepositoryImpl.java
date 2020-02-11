@@ -4,17 +4,26 @@ import resume.connection.ConnectionManager;
 import resume.domain.Resume;
 import resume.ropository.ResumeRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResumeRepositoryImpl implements ResumeRepository {
 
 
-    private static final String SAVE_QUERY = "INSERT INTO Resume (id, name2, ) VALUES (?, ?, ?)";
+    private static final String SAVE_QUERY = "INSERT INTO Resume (ID, NAME2, SURNAME, PATRONYMIC, SEX, Date_of_Birth, GITHUB_CONTACTS,\n" +
+            "      EMAIL,\n" +
+            "      TELEPHONE,\n" +
+            "      SKYPE,\n" +
+            "      LINKEDIN,\n" +
+            "      GITHUB_TECHNOLOGY,\n" +
+            "      SPRING_BOOT,\n" +
+            "      HTML,\n" +
+            "      JAVA_EE,\n" +
+            "      JAVA_CORE,\n" +
+            "      MAVEN,\n" +
+            "      REST,\n" +
+            "      SPRING ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "";
     private static final String GET_QUERY = "SELECT * FROM Resume WHERE id=?";
     private static final String GET_ALL_QUERY = "SELECT * FROM Resume";
@@ -58,6 +67,20 @@ public class ResumeRepositoryImpl implements ResumeRepository {
         return list;
     }
 
+    @Override
+    public List<Resume> getBySex(String sex) throws SQLException {
+        final PreparedStatement statement = getConnection().prepareStatement(GET_RESUMES_BY_NAME);
+        statement.setString(5, sex);
+        statement.execute();
+        List<Resume> list = new ArrayList<>();
+        ResultSet rs = statement.getResultSet();
+        while (rs.next()) {
+            list.add(populateEntity(rs));
+        }
+        rs.close();
+        return list;
+    }
+
     private Resume populateEntity(ResultSet rs) throws SQLException{
         Resume entity = new Resume();
         entity.setId(rs.getInt(1));
@@ -67,6 +90,14 @@ public class ResumeRepositoryImpl implements ResumeRepository {
 
     @Override
     public Resume get(Integer id) throws SQLException {
+        final PreparedStatement statement = getConnection().prepareStatement(GET_QUERY);
+        statement.setLong(1, (long) id);
+        statement.executeQuery();
+        ResultSet resultSet = statement.getResultSet();
+        if (resultSet.next()) {
+            return formResume(resultSet);
+        }
+        resultSet.close();
         return null;
     }
 
@@ -85,12 +116,33 @@ public class ResumeRepositoryImpl implements ResumeRepository {
 
     @Override
     public Resume save(Resume resume) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void update(Resume resume) throws SQLException {
-
+        final PreparedStatement statement = getConnection().prepareStatement(SAVE_QUERY, Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1, resume.getId());
+        statement.setString(2, resume.getName2());
+        statement.setString(3, resume.getSurname());
+        statement.setString(4, resume.getPatronymic());
+        statement.setString(5,resume.getSex());
+        statement.setDate(6, (Date) resume.getDate_of_birth());
+        statement.setString(7, resume.getGithub_contacts());
+        statement.setString(8, resume.getEmail());
+        statement.setString(9, resume.getTelephone());
+        statement.setString(10, resume.getSkype());
+        statement.setString(11, resume.getLinkedin());
+        statement.setString(12, resume.getGinhub_technology());
+        statement.setString(13, resume.getSpring_boot());
+        statement.setString(14, resume.getHtml());
+        statement.setString(15, resume.getJava_ee());
+        statement.setString(16, resume.getJava_core());
+        statement.setString(17, resume.getMaven());
+        statement.setString(18, resume.getRest());
+        statement.setString(19, resume.getSpring());
+        statement.executeUpdate();
+        ResultSet resultSet = statement.getGeneratedKeys();
+        if (resultSet.next()) {
+            resume.setId( resultSet.getInt(1));
+        }
+        resultSet.close();
+        return resume;
     }
 
     @Override
