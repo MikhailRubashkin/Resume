@@ -24,7 +24,7 @@ public class ResumeRepositoryImpl implements ResumeRepository {
             "      MAVEN,\n" +
             "      REST,\n" +
             "      SPRING ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "";
+    private static final String SEX_QUERY = "SELECT * FROM Resume WHERE SEX = ?";
     private static final String GET_QUERY = "SELECT * FROM Resume WHERE id=?";
     private static final String GET_ALL_QUERY = "SELECT * FROM Resume";
     private static final String REMOVE_QUERY = "DELETE FROM Resume WHERE id=?";
@@ -85,6 +85,8 @@ public class ResumeRepositoryImpl implements ResumeRepository {
         Resume entity = new Resume();
         entity.setId(rs.getInt(1));
         entity.setName2(rs.getString(2));
+        entity.setSurname(rs.getString(3));
+        entity.setPatronymic(rs.getString(4));
         return entity;
     }
 

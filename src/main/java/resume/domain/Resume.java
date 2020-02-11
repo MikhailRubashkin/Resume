@@ -256,4 +256,85 @@ public class Resume implements Serializable {
                 ", spring='" + spring + '\'' +
                 '}';
     }
+    public static class Builder{
+        private Resume newResume;
+        public Builder(){
+            newResume = new Resume();
+        }
+        public Builder withName2(String name2){
+            newResume.name2 = name2;
+            return this;
+        }
+        public Builder withSurname(String surname){
+            newResume.surname = surname;
+            return this;
+        }
+        public Builder withPatronymic(String patronymic){
+            newResume.patronymic = patronymic;
+            return this;
+        }
+        public Builder withSex(String sex){
+            newResume.sex = sex;
+            return this;
+        }
+        public Builder withDate_of_Birth(Date date_of_birth){
+            newResume.date_of_birth = date_of_birth;
+            return  this;
+        }
+        public Builder withGithub_contacts(String github_contacts){
+            newResume.github_contacts = github_contacts;
+            return this;
+        }
+        public Builder withEmail(String email){
+            newResume.email = email;
+            return this;
+        }
+        public Builder withTelephone(String telephone){
+            newResume.telephone = telephone;
+            return this;
+        }
+        public Builder withSkype(String skype){
+            newResume.skype = skype;
+            return this;
+        }
+        public Builder withLinkedin(String linkedin){
+            newResume.linkedin = linkedin;
+            return this;
+        }
+        public Builder withGinhub_Technology(String ginhub_technology){
+            newResume.ginhub_technology = ginhub_technology;
+            return this;
+        }
+        public Builder withSpring_Boot(String spring_boot){
+            newResume.spring_boot = spring_boot;
+            return this;
+        }
+        public Builder withHtml(String html){
+            newResume.html = html;
+            return this;
+        }
+        public Builder withJava_EE(String java_ee){
+            newResume.java_ee = java_ee;
+            return this;
+        }
+        public  Builder withJava_Core(String java_core){
+            newResume.java_core = java_core;
+            return this;
+        }
+        public Builder withMaven(String maven){
+            newResume.maven = maven;
+            return this;
+        }
+        public Builder withRest(String rest){
+            newResume.rest = rest;
+            return this;
+        }
+        public Builder withSpring(String spring){
+            newResume.spring = spring;
+            return this;
+        }
+        public Resume build(){
+            return newResume;
+        }
+    }
 }

@@ -36,6 +36,16 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
+    public List<Resume> getBySex(String sex) {
+        try {
+            return resumeRepository.getBySex(sex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public List<Resume> getResume() {
         try {
             return resumeRepository.getAll();
