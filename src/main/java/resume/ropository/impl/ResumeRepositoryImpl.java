@@ -87,6 +87,7 @@ public class ResumeRepositoryImpl implements ResumeRepository {
         entity.setName2(rs.getString(2));
         entity.setSurname(rs.getString(3));
         entity.setPatronymic(rs.getString(4));
+        entity.setSex(rs.getString(5));
         return entity;
     }
 
