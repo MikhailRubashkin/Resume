@@ -28,27 +28,6 @@ public class Resume implements Serializable {
 
     public Resume(){}
 
-    public Resume(String name2, String surname, String patronymic, String sex, Date date_of_birth, String github_contacts, String email, String telephone, String skype, String linkedin, String ginhub_technology, String spring_boot, String html, String java_ee, String java_core, String maven, String rest, String spring) {
-        this.name2 = name2;
-        this.surname = surname;
-        this.patronymic = patronymic;
-        this.sex = sex;
-        this.date_of_birth = date_of_birth;
-        this.github_contacts = github_contacts;
-        this.email = email;
-        this.telephone = telephone;
-        this.skype = skype;
-        this.linkedin = linkedin;
-        this.ginhub_technology = ginhub_technology;
-        this.spring_boot = spring_boot;
-        this.html = html;
-        this.java_ee = java_ee;
-        this.java_core = java_core;
-        this.maven = maven;
-        this.rest = rest;
-        this.spring = spring;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -258,8 +237,13 @@ public class Resume implements Serializable {
     }
     public static class Builder{
         private Resume newResume;
+
         public Builder(){
             newResume = new Resume();
+        }
+        public Builder withId(Integer id){
+            newResume.id = id;
+            return this;
         }
         public Builder withName2(String name2){
             newResume.name2 = name2;

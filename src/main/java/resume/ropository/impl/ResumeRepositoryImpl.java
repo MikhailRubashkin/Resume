@@ -56,7 +56,7 @@ public class ResumeRepositoryImpl implements ResumeRepository {
     @Override
     public List<Resume> getByName(String name2) throws SQLException {
         final PreparedStatement statement = getConnection().prepareStatement(GET_RESUMES_BY_NAME);
-        statement.setString(2, name2);
+        statement.setString(1, name2);
         statement.execute();
         List<Resume> list = new ArrayList<>();
         ResultSet rs = statement.getResultSet();
@@ -69,8 +69,8 @@ public class ResumeRepositoryImpl implements ResumeRepository {
 
     @Override
     public List<Resume> getBySex(String sex) throws SQLException {
-        final PreparedStatement statement = getConnection().prepareStatement(GET_RESUMES_BY_NAME);
-        statement.setString(5, sex);
+        final PreparedStatement statement = getConnection().prepareStatement(SEX_QUERY);
+        statement.setString(1, sex);
         statement.execute();
         List<Resume> list = new ArrayList<>();
         ResultSet rs = statement.getResultSet();

@@ -7,8 +7,6 @@ import resume.domain.Resume;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class ResumeServiceImplTest {
 
     private ResumeServiceImpl resumeService;
@@ -25,21 +23,28 @@ public class ResumeServiceImplTest {
 
     @org.junit.Test
     public void getByName() {
-
+        final List<Resume> resumes = resumeService.getByName("Петров");
+        Assert.assertTrue(resumes.size() > 0);
     }
 
     @org.junit.Test
     public void getResumes() {
-        Resume resume = new Resume();
-        resume.setId(4);
-        resume.setName2("Петров");
-        resume.setSurname("Петр");
-        resume.setPatronymic("Петрович");
-        resume.setSex("Мужчина");
+        Resume resume = new Resume.Builder()
+                .withId(4)
+                .withName2("Петров")
+                .withSurname("Петр")
+                .withPatronymic("Петрович")
+                .withSex("мужчина")
+                .build();
         final Resume newResume = resumeService.addResume(resume);
         Assert.assertNotNull(newResume);
         final List<Resume> resumes = resumeService.getResume();
         Assert.assertTrue(resumes.size() > 0);
         resumeService.deleteResume(newResume.getId());
+    }
+    @Test
+    public void getBySex() {
+        final List<Resume> resumes = resumeService.getBySex("женщина");
+        Assert.assertTrue(resumes.size() > 0);
     }
 }
